@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec4 vPosition;
+        attribute vec4 vColor;
+        varying vec4 fColor;
+		uniform mat4 modelViewMatrix;
+		uniform mat4 projectionMatrix;
+
+        void main()
+        {
+            fColor = vColor;
+            gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+        }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+
+        varying vec4 fColor;
+
+        void main()
+        {
+            gl_FragColor = fColor;
+        }
+    </script>
+
+    <script type="text/javascript" src="Common/webgl-utils.js"></script>
+    <script type="text/javascript" src="Common/initShaders.js"></script>
+    <script type="text/javascript" src="Common/MV.js"></script>
+    <script type="text/javascript" src="LookAtCubePerspective.js"></script>
+</head>
+
+<body>
+    <canvas id="gl-canvas" width="512" height="512">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+	
+    <br />
+	View:
+	<button id="perspective" style="background: lightgrey">Perspective</button>
+	<button id="orthographic" style="background: white">Orthographic</button>
+	</br>
+	Theta:
+	<button id="increaseTheta">Increase Theta</button>
+	<button id="decreaseTheta">Decrease Theta</button>
+	</br>
+	Phi:
+	<button id="increasePhi">Increase Phi</button>
+	<button id="decreasePhi">Decrease Phi</button>
+	</br>
+	FovY: 60<input id="fovyval" type="range" min="60" max="180" step="10" value="120" /> 180   (80)
+	</br>
+	near: 0<input id="nearval" type="range" min=".1" max="2.0" step="0.1" value="0.1" /> 2   (0.1)
+	</br>
+	Far: 0<input id="farval" type="range" min=".1" max="10" step="0.1" value="1" /> 10   (4.0)
+	</br>
+	Left/Right: 0<input id="lrval" type="range" min=".1" max="10" step="0.1" value="2" /> 10   (2)
+	</br>
+	Top/Botom: 0<input id="tbval" type="range" min=".1" max="10.0" step="0.1" value="2" /> 10   (2)
+	</br>
+	radius: 0.1 <input id="radiusval" type="range" min=".1" max="5.0" step="0.1" value="1" /> 5   (1)
+	
+	
+</body>
+</html>
+</html>
